@@ -14,5 +14,5 @@
 ## 风险与后续建议
 
 - 第二阶段已新增 6 张 16:9 草莓芽芽正文配图样片，用于验证角色能否承担正文配图里的结构动作。
-- 当前样片是基于现有 reference 素材合成的视觉基线，不是图像模型直接生成的终稿。后续如果内置 `image_gen` 或 API Key 可用，可以用 `examples/caomeiyaya-showcase/prompts.md` 中的提示词重绘为更自然的手绘版本。
+- 当前样片已从合成视觉基线升级为 `qwen-image-2.0-pro` 文生图正式重绘版，整体更接近白底手绘正文配图。后续可以继续用 `scripts/generate_qwen_showcase.py` 复跑或微调提示词。
 - 原始小黑 examples 仍保留在仓库中，适合做结构校准；如果后续草莓芽芽样片足够稳定，可以逐步替换根目录 `examples/images/`。

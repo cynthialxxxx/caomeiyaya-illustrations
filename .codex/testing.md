@@ -20,16 +20,19 @@
 ### 第二阶段样片检查
 
 - 检查命令：`file examples/caomeiyaya-showcase/*.png caomeiyaya-illustrations/assets/caomeiyaya-showcase/*.png`
-- 结果：6 张正文配图样片均为 1600 x 900 PNG，根目录展示区与 Skill 内部展示区各保留一份。
+- 结果：6 张正文配图样片已由 `qwen-image-2.0-pro` 重绘，均为 2048 x 1152 PNG；根目录展示区与 Skill 内部展示区各保留一份。
 
 ### 图像生成说明
 
-- 当前 Codex 线程没有暴露内置 `image_gen` 工具，`infsh` 不在 PATH，且 `OPENAI_API_KEY` 未设置。
-- 第二阶段样片使用现有草莓芽芽 reference 素材合成，作为可审阅的 16:9 视觉基线；Skill 的正式工作流仍保留面向图像模型的 prompt 模板。
+- 使用命令：`zsh -lic 'python3 scripts/generate_qwen_showcase.py'`
+- 使用模型：`qwen-image-2.0-pro`
+- 使用尺寸：`2048*1152`
+- 调用端点：`https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation`
+- 生成过程：第一次连续生成到第 6 张时触发一次 `HTTP 429 Throttling.RateQuota`；脚本随后增加“已有文件跳过 + 429 退避重试”，第二次运行只补生成第 6 张并成功。
 
 ### 安装与推送检查
 
 - 本机安装命令：`mkdir -p /Users/cynthial/.codex/skills/caomeiyaya-illustrations`，随后 `rsync -a caomeiyaya-illustrations/ /Users/cynthial/.codex/skills/caomeiyaya-illustrations/`
 - 安装验证：`/Users/cynthial/.codex/skills/caomeiyaya-illustrations/SKILL.md` 的 frontmatter 为 `name: caomeiyaya-illustrations`。
-- 安装样片验证：本机安装目录包含 6 张 `assets/caomeiyaya-showcase/0*.png`，均为 1600 x 900 PNG。
+- 安装样片验证：本机安装目录包含 6 张 `assets/caomeiyaya-showcase/0*.png`，均为 2048 x 1152 PNG。
 - 推送验证：第二阶段提交 `536e61c Add Caomeiyaya showcase samples` 已通过 SSH 推送到 `cynthialxxxx/caomeiyaya-illustrations` 的 `main` 分支；随后执行 `git fetch git@github.com:cynthialxxxx/caomeiyaya-illustrations.git main:refs/remotes/origin/main`，本地 `origin/main` 已更新到同一提交。

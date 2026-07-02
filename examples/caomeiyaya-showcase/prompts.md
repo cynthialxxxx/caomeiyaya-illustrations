@@ -1,6 +1,6 @@
 # 草莓芽芽正文配图样片 Prompts
 
-这些 prompt 对应 `examples/caomeiyaya-showcase/` 里的 6 张样片。当前样片使用现有草莓芽芽 reference 素材合成，下面的 prompt 可在图像模型可用时重绘为更自然的手绘版本。
+这些 prompt 对应 `examples/caomeiyaya-showcase/` 里的 6 张样片。当前正式样片由千问文生图模型 `qwen-image-2.0-pro` 生成；下面的 prompt 也可继续复跑或微调。
 
 ## 01 信息过载
 
