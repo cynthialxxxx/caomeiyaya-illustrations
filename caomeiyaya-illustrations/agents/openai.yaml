@@ -1,0 +1,6 @@
+interface:
+  display_name: "草莓芽芽配图"
+  short_description: "为中文文章生成清爽手绘、有草莓芽芽参与核心动作的正文配图资产"
+  default_prompt: "Use $caomeiyaya-illustrations to 为这篇中文文章设计并生成几张草莓芽芽正文配图。"
+policy:
+  allow_implicit_invocation: true
