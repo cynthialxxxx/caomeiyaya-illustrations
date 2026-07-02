@@ -32,4 +32,4 @@
 - 本机安装命令：`mkdir -p /Users/cynthial/.codex/skills/caomeiyaya-illustrations`，随后 `rsync -a caomeiyaya-illustrations/ /Users/cynthial/.codex/skills/caomeiyaya-illustrations/`
 - 安装验证：`/Users/cynthial/.codex/skills/caomeiyaya-illustrations/SKILL.md` 的 frontmatter 为 `name: caomeiyaya-illustrations`。
 - 安装样片验证：本机安装目录包含 6 张 `assets/caomeiyaya-showcase/0*.png`，均为 1600 x 900 PNG。
-- 推送验证：待第二阶段提交后执行。
+- 推送验证：第二阶段提交 `536e61c Add Caomeiyaya showcase samples` 已通过 SSH 推送到 `cynthialxxxx/caomeiyaya-illustrations` 的 `main` 分支；随后执行 `git fetch git@github.com:cynthialxxxx/caomeiyaya-illustrations.git main:refs/remotes/origin/main`，本地 `origin/main` 已更新到同一提交。
