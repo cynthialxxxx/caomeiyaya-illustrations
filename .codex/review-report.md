@@ -13,6 +13,6 @@
 
 ## 风险与后续建议
 
-- 当前还没有生成新的 16:9 草莓芽芽正文配图样片，下一步建议按视频方法生成 5-8 张 reference/样片再补入 README。
+- 第二阶段已新增 6 张 16:9 草莓芽芽正文配图样片，用于验证角色能否承担正文配图里的结构动作。
+- 当前样片是基于现有 reference 素材合成的视觉基线，不是图像模型直接生成的终稿。后续如果内置 `image_gen` 或 API Key 可用，可以用 `examples/caomeiyaya-showcase/prompts.md` 中的提示词重绘为更自然的手绘版本。
 - 原始小黑 examples 仍保留在仓库中，适合做结构校准；如果后续草莓芽芽样片足够稳定，可以逐步替换根目录 `examples/images/`。
-- 如果要让本机 Codex 直接可用，还需要把 `caomeiyaya-illustrations/` 复制到 `$CODEX_HOME/skills/`，这会写入仓库外目录，执行前应单独确认。
