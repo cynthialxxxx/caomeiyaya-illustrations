@@ -20,7 +20,7 @@
 ### 第二阶段样片检查
 
 - 检查命令：`file examples/caomeiyaya-showcase/*.png caomeiyaya-illustrations/assets/caomeiyaya-showcase/*.png`
-- 结果：6 张正文配图样片已由 `qwen-image-2.0-pro` 重绘，均为 2048 x 1152 PNG；根目录展示区与 Skill 内部展示区各保留一份。
+- 结果：6 张正文配图样片已调整为 IP 锁定版，均为 2048 x 1152 PNG；根目录展示区与 Skill 内部展示区各保留一份。
 
 ### IP 定稿板检查
 
@@ -28,16 +28,14 @@
 - 结果：已从桌宠 `spritesheet.webp` 生成 IP 标准板与默认帧集合，并同步到根目录资产与 Skill 内部资产。
 - 检查命令：`file assets/caomeiyaya-ip-lock/*.png caomeiyaya-illustrations/assets/caomeiyaya-ip-lock/*.png`
 - 结果：`caomeiyaya-ip-model-sheet.png` 为 2400 x 1600 PNG，`default-sprite-frames.png` 为 1152 x 588 PNG，根目录与 Skill 内部各保留一份。
-- 检查命令：`python3 -m py_compile scripts/build_ip_lock_board.py scripts/generate_qwen_showcase.py`
+- 检查命令：`python3 -m py_compile scripts/build_ip_lock_board.py scripts/generate_ip_locked_showcase.py scripts/generate_qwen_showcase.py`
 - 结果：脚本语法检查通过。
 
 ### 图像生成说明
 
-- 使用命令：`zsh -lic 'python3 scripts/generate_qwen_showcase.py'`
-- 使用模型：`qwen-image-2.0-pro`
-- 使用尺寸：`2048*1152`
-- 调用端点：`https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation`
-- 生成过程：第一次连续生成到第 6 张时触发一次 `HTTP 429 Throttling.RateQuota`；脚本随后增加“已有文件跳过 + 429 退避重试”，第二次运行只补生成第 6 张并成功。
+- IP 锁定样片命令：`python3 scripts/generate_ip_locked_showcase.py`
+- 当前正式样片角色直接来自桌宠 `spritesheet.webp` 默认帧，避免文生图把角色改成泛草莓小人。
+- Qwen 参考图输入实验：`qwen-image-2.0-pro` 支持使用 IP 标准板作为参考图，但实测会出现照片背景、大段标题或说明文字漂移，因此未作为当前正式样片来源；`scripts/generate_qwen_showcase.py` 作为后续实验工具保留。
 
 ### 安装与推送检查
 

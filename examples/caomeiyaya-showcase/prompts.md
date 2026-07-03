@@ -1,6 +1,6 @@
 # 草莓芽芽正文配图样片 Prompts
 
-这些 prompt 对应 `examples/caomeiyaya-showcase/` 里的 6 张样片。当前正式样片由千问文生图模型 `qwen-image-2.0-pro` 生成；下面的 prompt 也可继续复跑或微调。
+这些 prompt 对应 `examples/caomeiyaya-showcase/` 里的 6 张样片。当前正式样片是 IP 锁定版：角色直接来自桌宠 spritesheet 默认帧，结构部分由 `scripts/generate_ip_locked_showcase.py` 生成；下面的 prompt 用于后续继续用图像模型重绘或微调。
 
 ## 01 信息过载
 

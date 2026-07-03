@@ -24,6 +24,7 @@ MODEL = os.getenv("QWEN_IMAGE_MODEL", "qwen-image-2.0-pro")
 SIZE = os.getenv("QWEN_IMAGE_SIZE", "2048*1152")
 BASE_URL = os.getenv("DASHSCOPE_BASE_URL", "https://dashscope.aliyuncs.com/api/v1").rstrip("/")
 ENDPOINT = f"{BASE_URL}/services/aigc/multimodal-generation/generation"
+PROMPT_EXTEND = os.getenv("QWEN_PROMPT_EXTEND", "false").lower() in {"1", "true", "yes"}
 REFERENCE_IMAGES = [
     item.strip()
     for item in os.getenv("QWEN_REFERENCE_IMAGES", "").split(",")
@@ -34,7 +35,7 @@ NEGATIVE_PROMPT = (
     "低分辨率，低画质，图片模糊，构图混乱，信息过载，背景复杂，PPT模板感，商业海报感，"
     "儿童贴纸感，3D渲染，厚重阴影，渐变背景，照片质感，写实人像，文字模糊，文字扭曲，"
     "错别字，英文乱码，角色缺少草莓帽，角色缺少叶片刘海，角色只是站在角落装饰，"
-    "多余标题，左上角大标题，边框卡片，水印。"
+    "多余标题，左上角大标题，黑色说明文字段落，大段中文，正文段落，复杂说明，边框卡片，水印。"
 )
 
 STYLE_PREFIX = """
@@ -45,6 +46,7 @@ STYLE_PREFIX = """
 草莓芽芽必须承担画面的核心动作，不能只是站在旁边。读者要一眼看到她正在推动、搬运、修补、筛选、搭桥、踩机器或操作系统。如果角色不像参考图里的桌宠草莓芽芽，则本图不合格。
 
 文字要求：只出现 3 到 6 个短中文标签，字要清晰可读。不要写说明长句，不要写英文，不要写大标题。
+绝对不要把提示词里的“主题、核心隐喻、画面、构图、要求”等说明文字写进图里。图上只能出现指定的短标签词，不能出现任何说明段落、标题、摘要、冒号式长句或顶部大段文字。
 整体气质：清爽、低科技、手绘解释图、轻微戏剧感、可爱服务于结构表达。
 """.strip()
 
@@ -122,7 +124,7 @@ def build_payload(prompt: str) -> dict[str, Any]:
         },
         "parameters": {
             "negative_prompt": NEGATIVE_PROMPT,
-            "prompt_extend": True,
+            "prompt_extend": PROMPT_EXTEND,
             "watermark": False,
             "size": SIZE,
         },
@@ -181,6 +183,7 @@ def main() -> int:
     print(f"endpoint: {ENDPOINT}")
     print(f"model: {MODEL}")
     print(f"size: {SIZE}")
+    print(f"prompt_extend: {PROMPT_EXTEND}")
     print(f"reference images: {len(REFERENCE_IMAGES[:3])}")
     for index, sample in enumerate(SAMPLES, start=1):
         target = OUT_DIR / sample["filename"]
