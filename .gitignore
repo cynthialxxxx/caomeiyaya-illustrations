@@ -5,6 +5,7 @@ Thumbs.db
 generated/
 outputs/
 dist/
+.superpowers/
 
 # Local editor files
 .idea/

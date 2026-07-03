@@ -9,7 +9,7 @@ Visual DNA:
 Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten Chinese annotations. Clean product-sketch feeling with a soft playful character. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no sticker poster, no children's illustration, no realistic UI.
 
 Recurring IP character required:
-草莓芽芽, a tiny strawberry desktop-pet character. She has a red strawberry hat with seed dots, green leaf bangs, small sprout leaves, soft round face with blush, light green overalls, red shoes, and small strawberry accessories or vines. 草莓芽芽 must perform the core conceptual action, not decorate the scene. Keep her recognizable, expressive, and slightly dramatic, but the cuteness must serve the article's structure.
+草莓芽芽, the exact tiny strawberry desktop-pet character from the provided spritesheet/model sheet reference. She must look like the desktop pet: a round puffy strawberry-shell hat with pale seed dots, green leaf bangs forming a leaf crown on the forehead, extremely high head-to-body ratio, short arms and legs, soft round face with bright eyes and blush, light green one-piece overalls, red shoes, small strawberry pendants or vines, thick black outline, Q-version toy-like desktop-pet feeling. Do not redesign her as a strawberry-hat little girl, long-body mascot, generic cute girl, watercolor storybook character, or generic strawberry character. 草莓芽芽 must perform the core conceptual action, not decorate the scene.
 
 Theme:
 {正文配图主题}
@@ -33,7 +33,7 @@ Color use:
 Black for main line art, structure, and handwritten labels. Strawberry red for 草莓芽芽's hat and key warnings/problems/results. Leaf green for 草莓芽芽's leaf bangs, overalls, vines, and small identity details. Orange for main flow/path/arrows. Blue only for secondary notes or feedback/system state.
 
 Constraints:
-One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten Chinese labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, dense explainer, cute sticker sheet, or mascot poster. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific article. It should be clear but not instructional, cute but not childish, playful but clean.
+One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten Chinese labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a formal diagram, course slide, dense explainer, cute sticker sheet, mascot poster, or generic children's illustration. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific article. Character consistency has priority over decorative cuteness: if the character does not look like the desktop-pet 草莓芽芽, regenerate.
 ```
 
 ## 图像编辑提示

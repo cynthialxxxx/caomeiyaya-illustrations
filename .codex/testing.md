@@ -22,6 +22,15 @@
 - 检查命令：`file examples/caomeiyaya-showcase/*.png caomeiyaya-illustrations/assets/caomeiyaya-showcase/*.png`
 - 结果：6 张正文配图样片已由 `qwen-image-2.0-pro` 重绘，均为 2048 x 1152 PNG；根目录展示区与 Skill 内部展示区各保留一份。
 
+### IP 定稿板检查
+
+- 检查命令：`python3 scripts/build_ip_lock_board.py`
+- 结果：已从桌宠 `spritesheet.webp` 生成 IP 标准板与默认帧集合，并同步到根目录资产与 Skill 内部资产。
+- 检查命令：`file assets/caomeiyaya-ip-lock/*.png caomeiyaya-illustrations/assets/caomeiyaya-ip-lock/*.png`
+- 结果：`caomeiyaya-ip-model-sheet.png` 为 2400 x 1600 PNG，`default-sprite-frames.png` 为 1152 x 588 PNG，根目录与 Skill 内部各保留一份。
+- 检查命令：`python3 -m py_compile scripts/build_ip_lock_board.py scripts/generate_qwen_showcase.py`
+- 结果：脚本语法检查通过。
+
 ### 图像生成说明
 
 - 使用命令：`zsh -lic 'python3 scripts/generate_qwen_showcase.py'`

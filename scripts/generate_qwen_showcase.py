@@ -24,6 +24,11 @@ MODEL = os.getenv("QWEN_IMAGE_MODEL", "qwen-image-2.0-pro")
 SIZE = os.getenv("QWEN_IMAGE_SIZE", "2048*1152")
 BASE_URL = os.getenv("DASHSCOPE_BASE_URL", "https://dashscope.aliyuncs.com/api/v1").rstrip("/")
 ENDPOINT = f"{BASE_URL}/services/aigc/multimodal-generation/generation"
+REFERENCE_IMAGES = [
+    item.strip()
+    for item in os.getenv("QWEN_REFERENCE_IMAGES", "").split(",")
+    if item.strip()
+]
 
 NEGATIVE_PROMPT = (
     "低分辨率，低画质，图片模糊，构图混乱，信息过载，背景复杂，PPT模板感，商业海报感，"
@@ -36,8 +41,8 @@ STYLE_PREFIX = """
 16:9 横版中文正文配图，纯白背景，大量留白，黑色手绘线稿，少量草莓红、叶片绿、橙色箭头和蓝色辅助批注。
 画面像中文文章里的正文插图，不是封面，不是 PPT，不是商业海报，不要复杂架构图，不要满屏文字。
 
-固定角色：草莓芽芽，一个软萌但认真工作的草莓桌宠。她戴红色草莓帽，帽子有小籽点；有绿色叶片刘海和小芽叶；圆脸、有腮红；穿浅绿色背带装和红色小鞋；可以带草莓藤蔓、小篮子、果酱罐或叶片标签。
-草莓芽芽必须承担画面的核心动作，不能只是站在旁边。读者要一眼看到她正在推动、搬运、修补、筛选、搭桥、踩机器或操作系统。
+固定角色：草莓芽芽。必须以输入参考图中的桌宠 spritesheet / IP 标准板为唯一角色锚点，不要重新设计角色。她是极高头身比的小桌宠，不是草莓帽小女孩：圆鼓鼓草莓壳帽、额前绿色叶片刘海形成叶冠、短手短脚、圆脸亮眼粉腮、浅绿色连体装、红色小鞋、厚黑描边、Q 版玩偶感。
+草莓芽芽必须承担画面的核心动作，不能只是站在旁边。读者要一眼看到她正在推动、搬运、修补、筛选、搭桥、踩机器或操作系统。如果角色不像参考图里的桌宠草莓芽芽，则本图不合格。
 
 文字要求：只出现 3 到 6 个短中文标签，字要清晰可读。不要写说明长句，不要写英文，不要写大标题。
 整体气质：清爽、低科技、手绘解释图、轻微戏剧感、可爱服务于结构表达。
@@ -103,13 +108,15 @@ SAMPLES = [
 
 
 def build_payload(prompt: str) -> dict[str, Any]:
+    content = [{"image": url} for url in REFERENCE_IMAGES[:3]]
+    content.append({"text": f"{STYLE_PREFIX}\n\n{prompt.strip()}"})
     return {
         "model": MODEL,
         "input": {
             "messages": [
                 {
                     "role": "user",
-                    "content": [{"text": f"{STYLE_PREFIX}\n\n{prompt.strip()}"}],
+                    "content": content,
                 }
             ]
         },
@@ -174,6 +181,7 @@ def main() -> int:
     print(f"endpoint: {ENDPOINT}")
     print(f"model: {MODEL}")
     print(f"size: {SIZE}")
+    print(f"reference images: {len(REFERENCE_IMAGES[:3])}")
     for index, sample in enumerate(SAMPLES, start=1):
         target = OUT_DIR / sample["filename"]
         meta = META_DIR / f"{Path(sample['filename']).stem}.json"
@@ -193,9 +201,10 @@ def main() -> int:
                     "model": MODEL,
                     "size": SIZE,
                     "endpoint": ENDPOINT,
+                    "reference_images": REFERENCE_IMAGES[:3],
                     "request_id": response.get("request_id"),
                     "usage": response.get("usage"),
-                    "prompt": payload["input"]["messages"][0]["content"][0]["text"],
+                    "prompt": payload["input"]["messages"][0]["content"][-1]["text"],
                     "negative_prompt": NEGATIVE_PROMPT,
                 },
                 ensure_ascii=False,
